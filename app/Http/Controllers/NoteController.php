@@ -18,7 +18,7 @@ class NoteController extends Controller
         //Fetch notes in order of when they were last updated. Latest First.
         $notes = Note::where('user_id', Auth::id())->latest('updated_at')->paginate(1);
 
-        return view('index')->with('notes', $notes);
+        return view('notes.index')->with('notes', $notes);
     }
 
     /**
