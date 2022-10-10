@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Note;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,7 +17,7 @@ class NoteController extends Controller
     public function index()
     {
         //Fetch notes in order of when they were last updated. Latest First.
-        $notes = Note::where('user_id', Auth::id())->latest('updated_at')->paginate(1);
+        $notes = Note::where('user_id', Auth::id())->latest('updated_at')->paginate(5);
 
         return view('notes.index')->with('notes', $notes);
     }
@@ -28,7 +29,7 @@ class NoteController extends Controller
      */
     public function create() 
     {
-
+        return view('notes.create');
     }
 
     /**
@@ -39,7 +40,18 @@ class NoteController extends Controller
      */
     public function store(Request $request) 
     {
-        
+        $request->validate([
+            'title' => 'required|max:120',
+            'text' => 'required'
+        ]);
+
+        Note::create([
+            'uuid' => Str::uuid(),
+            'user_id' => Auth::id(),
+            'title' => $request->title,
+            'text' => $request->text
+        ]);
+        return to_route('notes.index');
     }
 
     /**
@@ -85,6 +97,7 @@ class NoteController extends Controller
      */
      public function destroy($id)
      {
-
+        // $id->delete();
+        // return redirect('/')->with('message', 'Note deleted successfully!');
      }
 }   
