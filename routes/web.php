@@ -14,11 +14,6 @@ use App\Http\Controllers\NoteController;
 |
 */
 
-Route::get('/notes', [NoteController::class, 'index']);
-Route::get('/notes/create', [NoteController::class, 'create']);
-Route::post('/notes', [NoteController::class, 'store']);
-
-Route::resource('/notes', NoteController::class);
 Route::resource('/notes', NoteController::class)->middleware(['auth']);
 
 Route::get('/', function () {
