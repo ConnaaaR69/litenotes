@@ -7,7 +7,7 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto-sm:px-6 lg:px-8">
-            <a href="{{ route('notes.create') }}" class="py-6 w-5/12 text-center text-[24px] mt-[50px] rounded bg-gradient-to-r from-[#BF03EE] to-[#00EFD2] text-white transition ease-in-out delay-150 hover:scale-105">
+            <a href="{{ route('notes.create') }}" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150">
             + New Note</a>
            @forelse ($notes as $note)
                 <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
